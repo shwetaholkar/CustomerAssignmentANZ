@@ -128,6 +128,8 @@ namespace MyTraining1121AngularDemo.CustomerUserss
             //);
 
             var filteredCustomerUsers = _customerUserRepository.GetAll()
+                .Include(e => e.CustomerRef)
+                       .Include(e => e.UserRef)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false)
              
                         .WhereIf(input.MinTotalBillingAmountFilter != null, e => e.TotalBillingAmount >= input.MinTotalBillingAmountFilter)
@@ -175,6 +177,26 @@ namespace MyTraining1121AngularDemo.CustomerUserss
             );
 
         }
+
+
+        //public ListResultDto<PersonListDto> GetPeople(GetPeopleInput input)
+        //{
+        //    var persons = _personRepository
+        //        .GetAll()
+        //        .Include(p => p.Phones)
+        //        .WhereIf(
+        //            !input.Filter.IsNullOrEmpty(),
+        //            p => p.Name.Contains(input.Filter) ||
+        //                    p.Surname.Contains(input.Filter) ||
+        //                    p.EmailAddress.Contains(input.Filter)
+        //        )
+        //        .OrderBy(p => p.Name)
+        //        .ThenBy(p => p.Surname)
+        //        .ToList();
+
+        //    return new ListResultDto<PersonListDto>(ObjectMapper.Map<List<PersonListDto>>(persons));
+        //}
+
 
         //[AbpAuthorize(AppPermissions.Pages_CustomerUser_Edit)]
         public async Task<GetCustomerUserForEditOutput> GetCustomerUserForEdit(EntityDto input)

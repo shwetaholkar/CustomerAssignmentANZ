@@ -23,7 +23,7 @@ namespace MyTraining1121AngularDemo.Authorization
         {
             _isMultiTenancyEnabled = multiTenancyConfig.IsEnabled;
         }
-
+        
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
@@ -136,3 +136,4 @@ namespace MyTraining1121AngularDemo.Authorization
     }
 }
 }
+
